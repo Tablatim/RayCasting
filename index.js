@@ -52,10 +52,10 @@ const player = {
 }
 
 function resetPlayerPos() {
-    player.x = CELL_SIZE * 2.5
-    player.y = CELL_SIZE * 3.25
+    player.x = CELL_SIZE * 1.5
+    player.y = CELL_SIZE * 0
     player.size = 10
-    player.angle = 1.55
+    player.angle = 0
     player.speed = 0
     player.movement = "z"
 }
@@ -232,6 +232,22 @@ function renderScene(rays){
     context.fillStyle = '#922B21'
     context.fillRect( SCREEN_WIDTH/2-crossScale,  SCREEN_HEIGHT/2-crossScale, crossScale, crossScale)
 
+    context.fillStyle = 'black'
+    context.font = '40px serif underline';
+    txt = "Touches :"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*35), 50, 100000)
+    context.font = '30px serif';
+    txt = "z, q, s, d : se déplacer"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*14), 100, 100000)
+    txt = "Shift : accélerer"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*19.5), 150, 100000)
+    txt = "Clic : Casser un bloc"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*15.75), 200, 100000)
+    txt = "Double Clic :"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*25.5), 250, 100000)
+    txt = "Bloquer la souris"
+    context.fillText(txt, SCREEN_WIDTH-(600-txt.length*21), 300, 100000)
+
 }
 
 function renderMiniMap(posX = 0, posY = 0, scale = 1, rays){
@@ -280,7 +296,7 @@ function renderMiniMap(posX = 0, posY = 0, scale = 1, rays){
     context.fill()
 
     //player dir
-    const rayLenth = player.size * 2;
+    const rayLenth = player.size * 3;
     context.strokeStyle = COLORS.player
     context.beginPath()
     context.moveTo(player.x * scale + posX, player.y * scale + posY)
@@ -297,7 +313,8 @@ function gameLoop(){
     movePlayer();
     const rays = getRays();
     renderScene(rays);
-    renderMiniMap(0, 0, 0.5, rays)
+    minimapScale = 0.3
+    renderMiniMap(0, 0, minimapScale, rays)
 }
 
 setInterval(gameLoop, TICK)
