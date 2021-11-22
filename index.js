@@ -16,7 +16,7 @@ const PLAYER_SIZE = 10;
 
 const WALL_SIZE = 277;
 
-const FOV = toRadians(90);
+const FOV = toRadians(60);
 
 const COLORS = {
     empty: "white",
